@@ -53,9 +53,6 @@ class TextCNN(nn.Module):
         # exit()
         true = true.float()
         weight = torch.where(true > 0, CLS_WEIGHT_COEF[1], CLS_WEIGHT_COEF[0])
-        print(pred)
-        print(true)
-        exit()
         return F.binary_cross_entropy(pred, true, weight=weight, reduction='mean')
 
 

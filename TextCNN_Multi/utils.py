@@ -58,6 +58,7 @@ def seq2ids(seq):
 
 
 def evaluate(pred, true):
+    pred = np.array(pred)
     pred = np.where(pred > CLS_PROB_BAR, 1, 0)
 
     correct_num, predict_num, gold_num = 0, 0, 0

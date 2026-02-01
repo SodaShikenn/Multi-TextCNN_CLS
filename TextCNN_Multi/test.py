@@ -7,10 +7,10 @@ if __name__ == '__main__':
     id2label, _ = get_label()
 
     test_dataset = Dataset('test')
-    test_loader = data.DataLoader(test_dataset, batch_size=100, shuffle=False)
+    test_loader = data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
     model = TextCNN().to(DEVICE)
-    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_20.pth', map_location=DEVICE))
+    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_14.pth', map_location=DEVICE))
 
     y_pred = []
     y_true = []
@@ -26,13 +26,7 @@ if __name__ == '__main__':
 
             print('>> batch:', b, 'loss:', round(loss.item(), 5))
 
-            test_pred_ = torch.sigmoid(test_pred).cpu().data.numpy()  # Multi-label
+            y_pred += test_pred.data.tolist()
+            y_true += target.data.tolist()
 
-            y_pred.append(test_pred_)
-            y_true.append(target.cpu().data.numpy())
-
-    import numpy as np
-    y_pred = np.concatenate(y_pred, axis=0)
-    y_true = np.concatenate(y_true, axis=0)
-    report = evaluate(y_pred, y_true)
-    print(f"Precision: {report['precision']:.4f}, Recall: {report['recall']:.4f}, F1: {report['f1_score']:.4f}")
+    print(evaluate(y_pred, y_true))

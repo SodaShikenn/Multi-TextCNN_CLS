@@ -13,6 +13,7 @@ if __name__ == '__main__':
 
     model = TextCNN().to(DEVICE)
     optimizer = torch.optim.Adam(model.parameters(), lr=LR)
+    # loss_fn = nn.CrossEntropyLoss()
 
     for e in range(EPOCH):
         for b, (input, mask, target) in enumerate(train_loader):
@@ -59,4 +60,6 @@ if __name__ == '__main__':
         report = evaluate(y_pred, y_true)
         print('test_f1:', report['f1_score'])
 
+        # torch.save(model, MODEL_DIR + f'{e}.pth')
+        # 保存模型参数
         torch.save(model.state_dict(), MODEL_DIR + f'model_weights_{e}.pth')
