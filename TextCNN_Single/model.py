@@ -53,3 +53,15 @@ if __name__ == '__main__':
     input = torch.randint(0, 3000, (2, TEXT_LEN))
     mask = torch.ones_like(input)
     print(model(input, mask).shape)
+
+#     def loss_fn(self, pred, true):
+#         true = true.float()
+#         weight = torch.where(true > 0, CLS_WEIGHT_COEF[1], CLS_WEIGHT_COEF[0])
+#         return F.binary_cross_entropy(pred, true, weight=weight, reduction='mean')
+
+
+# if __name__ == '__main__':
+#     model = TextCNN()
+#     input = torch.randint(0, 3000, (2, TEXT_LEN))
+#     mask = torch.ones_like(input)
+#     print(model(input, mask))

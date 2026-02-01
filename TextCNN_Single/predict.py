@@ -5,13 +5,15 @@ from model import *
 if __name__ == '__main__':
     id2label, _ = get_label()
 
-    model = torch.load(MODEL_DIR + '20.pth', map_location=DEVICE)
+    model = TextCNN().to(DEVICE)
+    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_30.pth', map_location=DEVICE))
+    # model = torch.load(MODEL_DIR + '30.pth', map_location=DEVICE)
     tokenizer = BertTokenizer.from_pretrained(BERT_MODEL)
 
     texts = [
-        '小城不大，风景如画：边境小镇室韦的蝶变之路',
-        '天问一号发射两周年，传回火卫一高清影像',
-        '林志颖驾驶特斯拉自撞路墩起火，车头烧成废铁',
+        '可以祛斑吗？',
+        '小孩能不能用？',
+        '可以祛痘吗，有没有副作用？',
     ]
 
     batch_input_ids = []
@@ -29,6 +31,10 @@ if __name__ == '__main__':
 
     batch_input_ids = torch.tensor(batch_input_ids)
     batch_mask = torch.tensor(batch_mask)
+
+    batch_input_ids = batch_input_ids.to(DEVICE)
+    batch_mask = batch_mask.to(DEVICE)
+
     pred = model(batch_input_ids, batch_mask)
     pred_ = torch.argmax(pred, dim=1)
 
