@@ -6,7 +6,7 @@ if __name__ == '__main__':
     id2label, _ = get_label()
 
     model = TextCNN().to(DEVICE)
-    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_30.pth', map_location=DEVICE))
+    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_99.pth', map_location=DEVICE))
     # model = torch.load(MODEL_DIR + '30.pth', map_location=DEVICE)
     tokenizer = BertTokenizer.from_pretrained(BERT_MODEL)
 

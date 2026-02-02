@@ -33,7 +33,7 @@ class Dataset(data.Dataset):
             pad_len = (TEXT_LEN - len(input_ids))
             input_ids += [BERT_PAD_ID] * pad_len
             mask += [0] * pad_len
-        target = int(labels)  # Single label classification
+        target = int(str(labels).split('|')[0])  # Take first label for single-label classification
         return torch.tensor(input_ids[:TEXT_LEN]), torch.tensor(mask[:TEXT_LEN]), torch.tensor(target)
 
 

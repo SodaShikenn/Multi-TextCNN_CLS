@@ -8,6 +8,7 @@ if __name__ == '__main__':
     train_dataset = Dataset('train')
     train_loader = data.DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 
+    # Used as 
     test_dataset = Dataset('test')
     test_loader = data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 

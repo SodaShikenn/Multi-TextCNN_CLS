@@ -6,6 +6,7 @@ if __name__ == '__main__':
 
     id2label, _ = get_label()
 
+    
     test_dataset = Dataset('test')
     test_loader = data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
