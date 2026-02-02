@@ -63,4 +63,4 @@ if __name__ == '__main__':
 
         # torch.save(model, MODEL_DIR + f'{e}.pth')
         # 保存模型参数
-        torch.save(model.state_dict(), MODEL_DIR + f'model_weights_{e}.pth')
+        torch.save(model.state_dict(), MODEL_DIR + f'model_weights_multi_{e}.pth')

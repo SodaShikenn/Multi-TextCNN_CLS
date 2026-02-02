@@ -63,4 +63,4 @@ if __name__ == '__main__':
         print(evaluate(y_pred, y_true, target_names=id2label))
 
         # 保存模型参数
-        torch.save(model.state_dict(), MODEL_DIR + f'model_weights_{e}.pth')
+        torch.save(model.state_dict(), MODEL_DIR + f'model_weights_single_{e}.pth')

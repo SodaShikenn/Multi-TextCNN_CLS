@@ -10,7 +10,7 @@ if __name__ == '__main__':
     test_loader = data.DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
     model = TextCNN().to(DEVICE)
-    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_14.pth', map_location=DEVICE))
+    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_multi_99.pth', map_location=DEVICE))
 
     y_pred = []
     y_true = []
