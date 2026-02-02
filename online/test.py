@@ -6,7 +6,7 @@ if __name__ == '__main__':
     file_path = os.path.join(os.path.dirname(__file__), 'test_question_sample.csv')
     df = pd.read_csv(file_path, usecols=['content', 'labels'], dtype={'labels': str})
     # df.info()
-    # 分段处理
+    # Process in batches
     i = 0
     pred_labels = []
 

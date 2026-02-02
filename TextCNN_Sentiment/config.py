@@ -6,7 +6,7 @@ BERT_PAD_ID = 0
 QUESTION_TEXT_LEN = 50
 ANSWER_TEXT_LEN = 50
 
-BERT_MODEL = '../huggingface/bert-base-chinese/'
+BERT_MODEL = '../online/models/bert-base-chinese'
 MODEL_DIR = './data/output/models/'
 
 BATCH_SIZE = 100

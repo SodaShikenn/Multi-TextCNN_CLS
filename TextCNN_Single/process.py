@@ -29,7 +29,7 @@ def count_text_len():
 
 
 if __name__ =='__main__':
-    # print(label_to_id('功效/不良反应'))
+    # print(label_to_id('Efficacy/Side Effects'))
     trans_label('./data/input/tb_question_label_1w.xlsx', TRAIN_SAMPLE_PATH)
     trans_label('./data/input/jd_question_label_2k.xlsx', TEST_SAMPLE_PATH)
     count_text_len()

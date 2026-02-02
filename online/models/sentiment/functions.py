@@ -1,25 +1,22 @@
-from config import *
-from utils import *
-from model import *
+from .config import *
+from .model import *
+from transformers import BertTokenizer
 
-if __name__ == '__main__':
+from transformers import logging
+logging.set_verbosity_error()
+
+
+def predict(texts):
 
     model = TextCNN().to(DEVICE)
-    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_39.pth', map_location=DEVICE))
+    model.load_state_dict(torch.load(MODEL_DIR + 'model_weights_40.pth', map_location=DEVICE))
     # model = torch.load(MODEL_DIR + '20.pth', map_location=DEVICE)
     tokenizer = BertTokenizer.from_pretrained(BERT_MODEL)
-
-    texts = [
-        ['是正品吗？', '说不好，反正包装很糙'],
-        ['是正品吗？', '太辣鸡了。'],
-        ['亲们祛斑效果怎么样？', '效果不错'],
-        ['这个和john jeff哪个好用', '感觉差不多'],
-    ]
 
     batch_input_ids = []
     batch_mask = []
     for question_content, answer_content in texts:
-        # Encode question text
+        # 问题文本编码
         question_tokened = tokenizer(question_content)
         question_input_ids = question_tokened['input_ids']
         question_mask = question_tokened['attention_mask']
@@ -30,7 +27,7 @@ if __name__ == '__main__':
         else:
             question_input_ids = question_input_ids[:QUESTION_TEXT_LEN]
             question_mask = question_mask[:QUESTION_TEXT_LEN]
-        # Encode answer text
+        # 答案文本编码
         answer_tokened = tokenizer(answer_content)
         answer_input_ids = answer_tokened['input_ids']
         answer_mask = answer_tokened['attention_mask']
@@ -41,10 +38,10 @@ if __name__ == '__main__':
         else:
             answer_input_ids = answer_input_ids[:QUESTION_TEXT_LEN]
             answer_mask = answer_mask[:QUESTION_TEXT_LEN]
-        # Combine question + answer as input to model
+        # 问题+答案，作为整体传给模型
         input_ids = question_input_ids + answer_input_ids
         mask = question_mask + answer_mask
-        # Add to batch for batch processing
+        # 压入batch，批量操作
         batch_input_ids.append(input_ids)
         batch_mask.append(mask)
 
@@ -57,4 +54,4 @@ if __name__ == '__main__':
     pred = model(batch_input_ids, batch_mask)
     pred_ = torch.argmax(pred, dim=1)
 
-    print(pred_, [ID2LABEL[l] for l in pred_])
+    return pred_.tolist(), [ID2LABEL[l] for l in pred_]

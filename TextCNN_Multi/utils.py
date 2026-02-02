@@ -44,7 +44,7 @@ def get_label():
     return id2label, {v: k for k, v in enumerate(id2label)}
 
 
-# 数字转序列函数
+# Convert IDs to multi-hot sequence
 def ids2seq(ids):
     seq = [0] * NUM_CLASSES
     for i in ids:
@@ -52,7 +52,7 @@ def ids2seq(ids):
     return seq
 
 
-# 序列转数字函数
+# Convert multi-hot sequence to IDs
 def seq2ids(seq):
     return [k for k,v in enumerate(seq) if v==1]
 

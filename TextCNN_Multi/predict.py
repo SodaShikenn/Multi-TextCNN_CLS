@@ -11,25 +11,25 @@ if __name__ == '__main__':
     tokenizer = BertTokenizer.from_pretrained(BERT_MODEL)
 
     texts = [
-        # Multi-label examples: 适用人群 + 不良反应
+        # Multi-label examples: Target Users + Side Effects
         '这款面霜小孩子可以用吗？会不会有副作用？',
         # 属性 (酒精味道)
         '我怎么闻着是酒精的味道？正常吗？',
         # 使用方法
         '请问，春天可以用嘛?',
-        # Multi-label: 功效 + 不良反应
+        # Multi-label: Efficacy + Side Effects
         '祛痘效果好吗？用了会不会过敏？',
-        # Multi-label: 价格 + 渠道
+        # Multi-label: Price + Channel
         '这个多少钱？在哪里可以买到正品？',
-        # Multi-label: 包装 + 物流
+        # Multi-label: Packaging + Logistics
         '包装怎么样？发货快吗？',
-        # Multi-label: 功效 + 竞品对比
+        # Multi-label: Efficacy + Competitor Comparison
         '美白效果好吗？和SK2比哪个好？',
-        # Multi-label: 适用人群 + 使用方法
+        # Multi-label: Target Users + Usage Method
         '孕妇能用吗？一天涂几次？',
-        # Multi-label: 使用感受 + 属性
+        # Multi-label: Usage Experience + Attributes
         '用起来油腻吗？是什么质地的？',
-        # Multi-label: 功效 + 适用人群 + 不良反应
+        # Multi-label: Efficacy + Target Users + Side Effects
         '敏感肌可以用吗？能祛斑吗？会刺激皮肤吗？',
     ]
 

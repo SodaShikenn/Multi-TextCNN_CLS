@@ -62,5 +62,5 @@ if __name__ == '__main__':
         print('test_f1:', report['f1_score'])
 
         # torch.save(model, MODEL_DIR + f'{e}.pth')
-        # 保存模型参数
+        # Save model weights
         torch.save(model.state_dict(), MODEL_DIR + f'model_weights_multi_{e}.pth')

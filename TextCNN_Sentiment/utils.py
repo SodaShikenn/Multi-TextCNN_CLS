@@ -27,7 +27,7 @@ class Dataset(data.Dataset):
     def __getitem__(self, index):
         question_content, answer_content, sentiment = \
             self.lines.loc[index, ['questionContent', 'answerContent', 'sentiment']].values
-        # 问题文本编码
+        # Encode question text
         question_tokened = self.tokenizer(question_content)
         question_input_ids = question_tokened['input_ids']
         question_mask = question_tokened['attention_mask']
@@ -38,7 +38,7 @@ class Dataset(data.Dataset):
         else:
             question_input_ids = question_input_ids[:QUESTION_TEXT_LEN]
             question_mask = question_mask[:QUESTION_TEXT_LEN]
-        # 答案文本编码
+        # Encode answer text
         answer_tokened = self.tokenizer(answer_content)
         answer_input_ids = answer_tokened['input_ids']
         answer_mask = answer_tokened['attention_mask']
@@ -49,10 +49,10 @@ class Dataset(data.Dataset):
         else:
             answer_input_ids = answer_input_ids[:QUESTION_TEXT_LEN]
             answer_mask = answer_mask[:QUESTION_TEXT_LEN]
-        # 问题+答案，作为整体传给模型
+        # Combine question + answer as input to model
         input_ids = question_input_ids + answer_input_ids
         mask = question_mask + answer_mask
-        # 目标值（0-中评，1好评，2-差评）
+        # Target value (0-neutral, 1-positive, 2-negative)
         target = 2 if sentiment == -1 else sentiment
         return torch.tensor(input_ids), torch.tensor(mask), torch.tensor(target)
 

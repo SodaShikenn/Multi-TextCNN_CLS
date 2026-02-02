@@ -7,7 +7,7 @@ if __name__ == '__main__':
     train_dataset = Dataset('train')
     train_loader = data.DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
 
-    # 加载测试集（当做验证集使用）
+    # Load test set (used as validation set)
     test_dataset = Dataset('test')
     test_loader = data.DataLoader(test_dataset, batch_size=100, shuffle=False)
 
@@ -41,7 +41,7 @@ if __name__ == '__main__':
                 'train_acc:', report['accuracy'],
             )
 
-        # 模型验证
+        # Model validation
         y_pred = []
         y_true = []
 
@@ -65,5 +65,5 @@ if __name__ == '__main__':
         print('test_acc:', report['accuracy'])
 
         # torch.save(model, MODEL_DIR + f'{e}.pth')
-        # 保存模型参数
+        # Save model weights
         torch.save(model.state_dict(), MODEL_DIR + f'model_weights_{e}.pth')
