@@ -17,7 +17,7 @@ NUM_CLASSES = 12
 FILTER_SIZES = [2, 3, 4]
 
 CLS_WEIGHT_COEF = [0.5, 1.0]
-CLS_PROB_BAR = 0.5
+CLS_PROB_BAR = 0.9
 EPS = 1e-10
 
 import torch

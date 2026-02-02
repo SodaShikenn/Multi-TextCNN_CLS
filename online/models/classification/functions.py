@@ -47,8 +47,8 @@ def predict(texts):
         lids = seq2ids(item)
 
         if not lids:
-            single_input_ids = torch.tensor([batch_input_ids[i].tolist()])
-            single_mask = torch.tensor([batch_mask[i].tolist()])
+            single_input_ids = torch.tensor([batch_input_ids[i].tolist()]).to(DEVICE)
+            single_mask = torch.tensor([batch_mask[i].tolist()]).to(DEVICE)
             single_pred = single_model(single_input_ids, single_mask)
             lids = torch.argmax(single_pred, dim=1).tolist()
 
